@@ -1,10 +1,15 @@
 module.exports = {
     checkfieldSignUp(req,res,next){
-        for (const key in req.body) {
-            if (!key) {
-                return res.status(201).json({message:`${key} cannot be empty`})
-            }
+        if (!req.body.email) {
+            res.status(204).json({
+                message:"email can't be empty"
+            })
+        } else if (!req.body.password) {
+                res.status(204).json({
+                    message:"password can't be empty"
+                })
+        } else {
+            next()
         }
-        next()
     }
 }

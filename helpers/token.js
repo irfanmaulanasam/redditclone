@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-  sign: function(user) {
+  create: function(user) {
     return jwt.sign(user, process.env.JWT_SECRET);
   },
   verify: function(token) {
