@@ -34,10 +34,43 @@ class UserController{
         })
     }
     static update(req,res){
-        
-    }
+        console.log('ini udate controlller')
+       let {id , email, password, isVerified } = res.locals.user
+       user.findOne({
+           id
+       })
+       .then(data=>{
+           data.email = email
+           data.password = password
+           data.isVerified = isVerified
+           user.save(data)
+       })
+       .then(data=>{
+           res.status(201).json(data)
+       })
+       .catch(e=>{
+            console.log(e)
+           res.status(500).status({
+               message:'internal server error'
+           })
+       })
+    }  
     static delete(req,res){
-
+        const {id} = res.locals.user
+        user.findById(id)
+        .then(data=>{
+            data.isActive = false
+            user.save(data)
+        })
+        .then(data=>{
+            res.status(201).json(data)
+        })
+        .catch(e=>{
+            console.log(e)
+            res.status(500).json({
+                message:'internal server error'
+            })
+        })
     }
 }
 
