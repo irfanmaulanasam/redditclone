@@ -18,7 +18,6 @@ class UserController{
         })
     }
     static signIn(req,res){
-        console.log(res.locals.user)
         token.create(res.locals.user.id)
         .then(data=>{
             res.status(201).json({
