@@ -5,7 +5,7 @@ module.exports = {
     return bcrypt.hashSync(plainPassword, 8);
   },
   checkPassword: function(plainPassword, hash) {
-    let status = bcrypt.comparesync(plainPassword, hash);
+    let status = bcrypt.compareSync(plainPassword,hash)
     return status;
   },
   generateNum: function(digit) {

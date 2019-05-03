@@ -17,6 +17,29 @@ class UserController{
             })
         })
     }
+    static signIn(req,res){
+        console.log(res.locals.user)
+        token.create(res.locals.user.id)
+        .then(data=>{
+            res.status(201).json({
+                username:res.locals.user.email.split('@')[0],
+                token:data,
+                email:res.locals.user.email
+            })
+        })
+        .catch(e=>{
+            console.log(e)
+            res.status(500).json({
+                message:'internal server error'
+            })
+        })
+    }
+    static update(req,res){
+        
+    }
+    static delete(req,res){
+
+    }
 }
 
 module.exports = UserController
